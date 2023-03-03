@@ -1,0 +1,6 @@
+github.com/spddl/GoOffReg v0.0.0-20220801141005-726ab3ee4336 h1:dtvAxyM7yLlNUUHp6UPPbp8UDKmE0vHnPUvpEQD6tBw=
+github.com/spddl/GoOffReg v0.0.0-20220801141005-726ab3ee4336/go.mod h1:H1ZDP4jPOj6iV4639lfVyiV+cJdXdZjr+98yOjwqfqU=
+golang.org/x/sys v0.5.0 h1:MUK/U/4lj1t1oPg0HfuXDN/Z1wv31ZJ/YcPiGccS4DU=
+golang.org/x/sys v0.5.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/text v0.7.0 h1:4BRB4x83lYWy72KwLD/qYDuTu7q9PjSagHvijDw7cLo=
+golang.org/x/text v0.7.0/go.mod h1:mrYo+phRRbMaCq/xk9113O4dZlRixOauAjOtrjsXDZ8=
