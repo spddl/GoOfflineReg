@@ -112,7 +112,7 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
-		defer file.Close()
+
 		var scanner *bufio.Scanner
 		contentType := DetectContentType(file)
 		fmt.Println("; Open", regfile, "("+contentType+")")
@@ -121,8 +121,7 @@ func main() {
 		case "utf-8":
 			scanner = bufio.NewScanner(file)
 		case "utf-16le":
-			dec := unicode.UTF16(unicode.LittleEndian, unicode.IgnoreBOM).NewDecoder()
-			scanner = bufio.NewScanner(dec.Reader(file))
+			scanner = bufio.NewScanner(unicode.UTF16(unicode.LittleEndian, unicode.IgnoreBOM).NewDecoder().Reader(file))
 		default:
 			file.Close()
 			fmt.Fprintln(os.Stderr, "ContentType:", contentType)
@@ -142,8 +141,8 @@ func main() {
 				// fmt.Printf("[%d] %s\n", index, rawLine)
 
 				commentIndex := strings.Index(rawLine, ";")
-				if commentIndex == 0 {
-					rawLine = "" // remove comment Line
+				if commentIndex != -1 {
+					rawLine = rawLine[:commentIndex] // remove comments
 				}
 
 				if strings.HasSuffix(rawLine, "\\") {
@@ -156,7 +155,7 @@ func main() {
 					continue // skip empty lines
 				}
 
-				if line[:1] == "[" {
+				if line[0] == 91 { // [
 					WorkingRegPath = new(Data)
 					line = line[1 : len(line)-1]
 
@@ -305,6 +304,7 @@ func main() {
 		if err := scanner.Err(); err != nil {
 			fmt.Printf("Invalid input: %s\n", err)
 		}
+		file.Close()
 	}
 
 	if Commit {
